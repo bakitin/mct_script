@@ -1,25 +1,22 @@
 from scraper import CaprendizajeScraper
 from ofertas_manager import OfertasManager
-
-import os
-from dotenv import load_dotenv
+from config import Config
 import time
 
-cc = os.getenv("CC")
-password = os.getenv("PASSWORD")
 
 
 print("[Main] Iniciando Caprendizaje Bot.")
 caprendizaje_scraper = CaprendizajeScraper()
 ofertas_manager = OfertasManager("data/ofertas.txt")
+config = Config()
 
 print("[Main] Abriendo la página de acceso.")
 caprendizaje_scraper.abrir_login()
 caprendizaje_scraper.presionar_boton("aprendices")
 print("[Main] Enviando las credenciales de acceso.")
 caprendizaje_scraper.insertar_credenciales(
-    cc,
-    password,
+    config.cc,
+    config.password,
     "tbLoginUsuario",
     "__tbPasswordUsuario",
 )
