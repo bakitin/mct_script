@@ -7,64 +7,80 @@ class CaprendizajeScraper:
         self.driver = webdriver.Chrome()
 
     def abrir_login(self):
-        url = "https://caprendizaje.sena.edu.co/sgva/SGVA_Diseno/pag/login.aspx"
-        self.driver.get(url)
+        url_login = "https://caprendizaje.sena.edu.co/sgva/SGVA_Diseno/pag/login.aspx"
+        self.driver.get(url_login)
         print("[Selenium] Página de inicio de sesión abierta.")
         
 
-    def presionar_boton(self,id):
-        button = self.driver.find_element(By.ID,id)
-        self.driver.execute_script("arguments[0].click();", button)
-        print(f"[Selenium] Botón pulsado: {id}")
+    def presionar_boton(self, id_elemento):
+        boton = self.driver.find_element(By.ID, id_elemento)
+        self.driver.execute_script("arguments[0].click();", boton)
+        print(f"[Selenium] Botón pulsado: {id_elemento}")
         
-    def insertar_credenciales(self,usuario,contrasena,campousuario,campocontrasena):
-        user_fild = self.driver.find_element(By.ID,campousuario)
-        user_fild.send_keys(usuario)
+    def insertar_credenciales(
+        self,
+        usuario,
+        contrasena,
+        id_campo_usuario,
+        id_campo_contrasena,
+    ):
+        campo_usuario = self.driver.find_element(By.ID, id_campo_usuario)
+        campo_usuario.send_keys(usuario)
 
-        password_fild = self.driver.find_element(By.ID,campocontrasena)
-        password_fild.send_keys(contrasena)
+        campo_contrasena = self.driver.find_element(By.ID, id_campo_contrasena)
+        campo_contrasena.send_keys(contrasena)
 
     def limpiar_elemento_por_clase(self, nombre_clase):
         selector_css = "." + nombre_clase.strip().replace(" ", ".")
-        elementos = self.driver.find_elements(By.CSS_SELECTOR, selector_css)
-        for elemento in elementos:
+        elementos_encontrados = self.driver.find_elements(
+            By.CSS_SELECTOR, selector_css
+        )
+        for elemento in elementos_encontrados:
             self.driver.execute_script("arguments[0].remove();", elemento)
 
     def verificar_sesion(self):
-        elementos = self.driver.find_element(By.ID, "lbl_especialidad")
-        if elementos:
+        elemento_sesion = self.driver.find_element(By.ID, "lbl_especialidad")
+        if elemento_sesion:
             print("[Selenium] Sesión iniciada correctamente.")
 
     def extraer_ofertas(self):
-        ofertas_extraidas = []
-        row_principal = self.driver.find_element(By.ID, "div_solicitudes")
-        botones = row_principal.find_elements(By.ID, "solicitud_aplicar")
-        print(f"[Selenium] Ofertas disponibles para revisar: {len(botones)}")
-        for boton in botones:
-            self.driver.execute_script("arguments[0].click();", boton)
+        textos_ofertas = []
+        contenedor_ofertas = self.driver.find_element(By.ID, "div_solicitudes")
+        botones_ofertas = contenedor_ofertas.find_elements(By.ID, "solicitud_aplicar")
+        print(
+            f"[Selenium] Ofertas disponibles para revisar: "
+            f"{len(botones_ofertas)}"
+        )
+        for boton_oferta in botones_ofertas:
+            self.driver.execute_script("arguments[0].click();", boton_oferta)
             time.sleep(2)
             selector_css = "." + "modal-body aprendizModalCuerpo".strip().replace(" ", ".")
-            elementos = self.driver.find_elements(By.CSS_SELECTOR, selector_css)
+            modales_encontrados = self.driver.find_elements(
+                By.CSS_SELECTOR, selector_css
+            )
         
-            for info in elementos:
-                if info.is_displayed():
-                    ofertas_extraidas.append(info.text)
+            for modal in modales_encontrados:
+                if modal.is_displayed():
+                    textos_ofertas.append(modal.text)
                     
-        ofertas = self._formatear_oferta(ofertas_extraidas)
-        print(f"[Selenium] Ofertas extraídas y formateadas: {len(ofertas)}")
+        ofertas_formateadas = self._formatear_oferta(textos_ofertas)
+        print(
+            f"[Selenium] Ofertas extraídas y formateadas: "
+            f"{len(ofertas_formateadas)}"
+        )
         self._cerrar()
         print("[Selenium] Navegador cerrado.")
-        return ofertas
+        return ofertas_formateadas
 
-    def _formatear_oferta(self, ofertas):
+    def _formatear_oferta(self, textos_ofertas):
         ofertas_formateadas = []
 
-        for oferta in ofertas:
+        for texto_oferta in textos_ofertas:
             oferta_formateada = {}
             campo_actual = None
-            lineas = oferta.splitlines()
+            lineas_oferta = texto_oferta.splitlines()
 
-            for linea in lineas:
+            for linea in lineas_oferta:
                 linea = linea.strip()
 
                 if linea in [

@@ -1,0 +1,2 @@
+pythoon-dotenv
+selenium

@@ -9,7 +9,7 @@ class OfertasManager():
 
 
     def guardar_ofertas(self,ofertas):
-        lista = []
+        bloques_txt = []
         ofertas_nuevas = self._filtrar_ofertas_nuevas(ofertas)
         repetidas = len(ofertas) - len(ofertas_nuevas)
         print(
@@ -26,9 +26,9 @@ class OfertasManager():
         if ofertas_nuevas:
             for oferta in ofertas_nuevas:
                 identificador = self._crear_identificador(oferta)
-                oferta_formateada = self._formatear_para_txt(oferta,identificador)
-                lista.append(oferta_formateada)
-            texto = "\n".join(lista)
+                bloque_txt = self._formatear_para_txt(oferta, identificador)
+                bloques_txt.append(bloque_txt)
+            texto = "\n".join(bloques_txt)
     
             with open(self.ruta, "a", encoding="utf-8") as archivo:
                 archivo.write(texto)
@@ -39,18 +39,18 @@ class OfertasManager():
         return ofertas_nuevas
 
 
-    def _formatear_para_txt(self,oferta, identificador):
+    def _formatear_para_txt(self, oferta, identificador):
         lineas = []
         separador = "=" * 40
         lineas.append(separador)
-        lineas.append("ID: "+identificador)
+        lineas.append("ID: " + identificador)
         for clave, valor in oferta.items():
             lineas.append(f"{clave}: {valor}")
         lineas.append(separador)
         return "\n".join(lineas)
     
 
-    def _crear_identificador(self,oferta):
+    def _crear_identificador(self, oferta):
         campos_estables = [
             oferta.get("Correo electrónico", ""),
             oferta.get("Persona de contacto", ""),
@@ -65,26 +65,28 @@ class OfertasManager():
         return identificador
 
     def _leer_identificadores(self):
-        conjunto = []
-        existe = os.path.exists(self.ruta)
-        if not existe:
+        ids_existentes = []
+        archivo_existe = os.path.exists(self.ruta)
+        if not archivo_existe:
             return []    
         with open(self.ruta, "r", encoding="utf-8") as archivo:
             contenido = archivo.read()
+
         for linea in contenido.splitlines():
             if linea.startswith("ID:"):
-                linea_limpia = linea.split(":")
-                conjunto.append(linea_limpia[1].strip())
-        return conjunto
+                partes_id = linea.split(":", 1)
+                ids_existentes.append(partes_id[1].strip())
+        return ids_existentes
 
-    def _filtrar_ofertas_nuevas(self,ofertas) -> list:
-        lista_nueva = []
-        lista_id = self._leer_identificadores()
+    def _filtrar_ofertas_nuevas(self, ofertas) -> list:
+        ofertas_nuevas = []
+        ids_existentes = self._leer_identificadores()
         
         for oferta in ofertas:
             identificador = self._crear_identificador(oferta)
 
-            if identificador not in lista_id:
-                lista_nueva.append(oferta)
+            if identificador not in ids_existentes:
+                ofertas_nuevas.append(oferta)
+                ids_existentes.append(identificador)
 
-        return lista_nueva 
+        return ofertas_nuevas
