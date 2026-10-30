@@ -44,31 +44,56 @@ class CaprendizajeScraper:
             print("[Selenium] Sesión iniciada correctamente.")
 
     def extraer_ofertas(self):
-        textos_ofertas = []
-        contenedor_ofertas = self.driver.find_element(By.ID, "div_solicitudes")
-        botones_ofertas = contenedor_ofertas.find_elements(By.ID, "solicitud_aplicar")
-        print(
-            f"[Selenium] Ofertas disponibles para revisar: "
-            f"{len(botones_ofertas)}"
-        )
-        for boton_oferta in botones_ofertas:
-            self.driver.execute_script("arguments[0].click();", boton_oferta)
-            time.sleep(2)
-            selector_css = "." + "modal-body aprendizModalCuerpo".strip().replace(" ", ".")
-            modales_encontrados = self.driver.find_elements(
-                By.CSS_SELECTOR, selector_css
+        ofertas_formateadas = []
+        try:
+            textos_ofertas = []
+            nombres_empresas = []
+            contenedor_ofertas = self.driver.find_element(By.ID, "div_solicitudes")
+            botones_ofertas = contenedor_ofertas.find_elements(By.ID, "solicitud_aplicar")
+            titulos_empresas = contenedor_ofertas.find_elements(
+                By.CLASS_NAME,
+                "aprendizLabelTituloSolicitudesBA",
             )
-        
-            for modal in modales_encontrados:
-                if modal.is_displayed():
-                    textos_ofertas.append(modal.text)
-                    
-        ofertas_formateadas = self._formatear_oferta(textos_ofertas)
-        print(
-            f"[Selenium] Ofertas extraídas y formateadas: "
-            f"{len(ofertas_formateadas)}"
-        )
-        self._cerrar()
+            nombres_empresas = [
+                titulo.text.strip() for titulo in titulos_empresas
+            ]
+
+            if len(nombres_empresas) != len(botones_ofertas):
+                raise RuntimeError(
+                    "La cantidad de nombres de empresa no coincide "
+                    "con la cantidad de ofertas."
+                )
+
+            print(
+                f"[Selenium] Ofertas disponibles para revisar: "
+                f"{len(botones_ofertas)}"
+            )
+            for indice, boton_oferta in enumerate(botones_ofertas):
+                self.driver.execute_script("arguments[0].click();", boton_oferta)
+                time.sleep(2)
+                selector_css = "." + "modal-body aprendizModalCuerpo".strip().replace(" ", ".")
+                modales_encontrados = self.driver.find_elements(
+                    By.CSS_SELECTOR, selector_css
+                )
+            
+                for modal in modales_encontrados:
+                    if modal.is_displayed():
+                        textos_ofertas.append(modal.text)
+                        
+            ofertas_formateadas = self._formatear_oferta(textos_ofertas)
+
+            for oferta, nombre_empresa in zip(
+                ofertas_formateadas,
+                nombres_empresas,
+            ):
+                oferta["Empresa"] = nombre_empresa
+
+            print(
+                f"[Selenium] Ofertas extraídas y formateadas: "
+                f"{len(ofertas_formateadas)}"
+            )
+        finally:
+            self._cerrar()
         print("[Selenium] Navegador cerrado.")
         return ofertas_formateadas
 

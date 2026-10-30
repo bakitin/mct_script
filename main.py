@@ -23,6 +23,7 @@ caprendizaje_scraper.insertar_credenciales(
 caprendizaje_scraper.presionar_boton("ini_session_aprendiz")
 caprendizaje_scraper.verificar_sesion()
 time.sleep(2)
+
 caprendizaje_scraper.limpiar_elemento_por_clase("modal fade in")
 caprendizaje_scraper.limpiar_elemento_por_clase("modal-backdrop fade in")
 time.sleep(2)

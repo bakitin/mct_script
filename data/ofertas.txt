@@ -12,6 +12,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 15
 Fecha de creación: 01/10/2026
 Fecha de cierre: 31/10/2026
+Empresa: SISTEMAS TELEMÁTICOS SISTEL S.A.S.
 ========================================
 ========================================
 ID: CAP-CCEBEFBB
@@ -24,9 +25,10 @@ Correo electrónico: hv@cosmitet.net
 Perfil: Estamos en la búsqueda de un aprendiz que se destaque por ser proactivo responsable y respetuoso con disposición para el aprendizaje y compromiso en sus funciones que desee fortalecer sus conocimientos apoyando diferentes procesos organizacionales y aportar al desarrollo de la empresa dentro de un entorno que promueve el crecimiento personal y profesional.
 Funciones a desarrollar: Estamos en la búsqueda de un aprendiz que se destaque por ser proactivo responsable y respetuoso con disposición para el aprendizaje y compromiso en sus funciones que desee fortalecer sus conocimientos apoyando diferentes procesos organizacionales y aportar al desarrollo de la empresa dentro de un entorno que promueve el crecimiento personal y profesional.
 Aprendices requeridos: 5
-Aprendices aplicados: 35
+Aprendices aplicados: 36
 Fecha de creación: 06/10/2026
 Fecha de cierre: 31/10/2026
+Empresa: COSMITET LTDA CORPORACION DE SERVICIOS MEDICOS INTERNACIONALES THEM Y CIA LTDA - COSMITET LTDA
 ========================================
 ========================================
 ID: CAP-243504C6
@@ -42,6 +44,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 8
 Fecha de creación: 07/10/2026
 Fecha de cierre: 31/10/2026
+Empresa: AD SOLUCIONES SAS
 ========================================
 ========================================
 ID: CAP-0A2AF1F4
@@ -57,6 +60,7 @@ Aprendices requeridos: 3
 Aprendices aplicados: 13
 Fecha de creación: 14/10/2026
 Fecha de cierre: 10/11/2026
+Empresa: COLOMBIANA DE SERVICIOS LOGISTICOS S.A.S
 ========================================
 ========================================
 ID: CAP-B4A5EF3C
@@ -72,6 +76,7 @@ Aprendices requeridos: 2
 Aprendices aplicados: 5
 Fecha de creación: 21/10/2026
 Fecha de cierre: 03/11/2026
+Empresa: LOPEZ Y LOPEZ GROUP SAS
 ========================================
 ========================================
 ID: CAP-D7776ADA
@@ -87,6 +92,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 2
 Fecha de creación: 22/10/2026
 Fecha de cierre: 10/11/2026
+Empresa: COMERCIALIZADORA DE INGENIERIAS & TECNOLOGIAS APLICADAS S.A.S
 ========================================
 ========================================
 ID: CAP-735D478A
@@ -102,6 +108,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 8
 Fecha de creación: 22/10/2026
 Fecha de cierre: 30/10/2026
+Empresa: HIMALAYA SEM SAS
 ========================================
 ========================================
 ID: CAP-B9F6CF7A
@@ -117,6 +124,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 2
 Fecha de creación: 26/10/2026
 Fecha de cierre: 10/11/2026
+Empresa: CROWD INNOVATION LAB S.A.S BIC
 ========================================
 ========================================
 ID: CAP-9C813D58
@@ -132,6 +140,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 2
 Fecha de creación: 26/10/2026
 Fecha de cierre: 15/11/2026
+Empresa: FASTTRACK S.A.S
 ========================================
 ========================================
 ID: CAP-687D537F
@@ -147,6 +156,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 1
 Fecha de creación: 26/10/2026
 Fecha de cierre: 06/11/2026
+Empresa: MANGLAR TECHNOLOGY S.A.S
 ========================================
 ========================================
 ID: CAP-E9075512
@@ -162,6 +172,7 @@ Aprendices requeridos: 1
 Aprendices aplicados: 4
 Fecha de creación: 27/10/2026
 Fecha de cierre: 14/11/2026
+Empresa: SCARAB SOLUCIONES COLOMBIA S.A.S.
 ========================================
 ========================================
 ID: CAP-4A3DED39
@@ -177,4 +188,5 @@ Aprendices requeridos: 2
 Aprendices aplicados: 3
 Fecha de creación: 28/10/2026
 Fecha de cierre: 24/12/2026
+Empresa: CLINICA NUEVA DE CALI S.A.S.
 ========================================
