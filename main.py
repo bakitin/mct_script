@@ -1,6 +1,7 @@
 from scraper import CaprendizajeScraper
 from ofertas_manager import OfertasManager
 from config import Config
+from gemini_service import GeminiService
 import time
 
 
@@ -37,3 +38,15 @@ print(
     f"[Main] Proceso finalizado. Nuevas guardadas: "
     f"{len(ofertas_nuevas)}"
 )
+
+gemini_service = GeminiService(
+    config.gemini_api_key,
+    config.gemini_model,
+)
+
+if ofertas_nuevas:
+    print("[Main] Ofertas nuevas listas para Gemini.")
+    resultado_gemini = gemini_service.ciclonador(ofertas_nuevas)
+    print(f"Resultado de Gemini: {resultado_gemini}")
+else:
+    print("[Main] No hay ofertas nuevas para enviar a Gemini.")
