@@ -1,0 +1,1 @@
+## En esta carpeta va ubicado el cv a adjuntar, nombrarlo como: CV.pdf

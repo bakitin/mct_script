@@ -4,8 +4,8 @@ import hashlib
 
 
 class OfertasManager():
-    def __init__(self, ruta):
-        self.ruta = ruta
+    def __init__(self, ruta_archivo_ofertas):
+        self.ruta_archivo_ofertas = ruta_archivo_ofertas
 
 
     def guardar_ofertas(self,ofertas):
@@ -18,10 +18,10 @@ class OfertasManager():
             f"Repetidas: {repetidas}"
         )
 
-        if not os.path.exists(self.ruta):
-            with open(self.ruta, "a", encoding="utf-8"):
+        if not os.path.exists(self.ruta_archivo_ofertas):
+            with open(self.ruta_archivo_ofertas, "a", encoding="utf-8"):
                 pass
-            print(f"[TXT] Archivo creado: {self.ruta}")
+            print(f"[TXT] Archivo creado: {self.ruta_archivo_ofertas}")
 
         if ofertas_nuevas:
             for oferta in ofertas_nuevas:
@@ -30,7 +30,7 @@ class OfertasManager():
                 bloques_txt.append(bloque_txt)
             texto = "\n".join(bloques_txt)
     
-            with open(self.ruta, "a", encoding="utf-8") as archivo:
+            with open(self.ruta_archivo_ofertas, "a", encoding="utf-8") as archivo:
                 archivo.write(texto)
             print(f"[TXT] Agregadas {len(ofertas_nuevas)} ofertas nuevas.")
         else:
@@ -66,10 +66,10 @@ class OfertasManager():
 
     def _leer_identificadores(self):
         ids_existentes = []
-        archivo_existe = os.path.exists(self.ruta)
+        archivo_existe = os.path.exists(self.ruta_archivo_ofertas)
         if not archivo_existe:
             return []    
-        with open(self.ruta, "r", encoding="utf-8") as archivo:
+        with open(self.ruta_archivo_ofertas, "r", encoding="utf-8") as archivo:
             contenido = archivo.read()
 
         for linea in contenido.splitlines():

@@ -7,19 +7,18 @@ from ddgs import DDGS
 
 
 class GeminiService:
-    def __init__(self, api_key, model):
+    def __init__(self, api_key):
         self.api_key = api_key
-        self.model = model
         self.client = genai.Client(api_key=self.api_key)
 
 
 
-    def ciclonador(self, ofertas):
+    def generar_correos(self, ofertas):
         resultados = []
-        for i, oferta in enumerate(ofertas):
+        for indice, oferta in enumerate(ofertas, start=1):
 
 
-            print(f"Procesando oferta {i+1} de {len(ofertas)}...")
+            print(f"[Gemini] Procesando oferta {indice} de {len(ofertas)}...")
             print("*----------------------------------------------*")
             respuesta_gemini = self._generar_correo(oferta)
             resultados.append(respuesta_gemini)
