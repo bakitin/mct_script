@@ -145,7 +145,7 @@ class GeminiService:
                     {oferta.get("Funciones a desarrollar","")}
 
                     Datos reales del candidato:
-                    Soy Santiago Segura, desarrollador full-stack de Cali, Colombia. Estudio Ingeniería de Software en el Politécnico Grancolombiano y el Tecnólogo en Análisis y Desarrollo de Software en el SENA, ambos en curso, y soy Técnico en Sistemas del SENA. Tengo más de dos años de experiencia real con clientes, desarrollando y desplegando aplicaciones web de principio a fin. Trabajo principalmente con Python (FastAPI), PostgreSQL y JavaScript, y también manejo infraestructura: dominios, DNS y correo corporativo. Entre mis proyectos están los sitios de Imposursas y Santana Reformas, el backend de una tienda en línea con pagos, un sistema de gestión para una peluquería con varias sucursales y una aplicación de voz P2P que sigo desarrollando. Busco un lugar donde pueda aportar con experiencia real y seguir creciendo con un equipo que me dé feedback.
+                    AQUI VA EL PERFIL DEL APRENDIZ
 
                     INVESTIGACION PROPORCIONADA:
                     {investigacion}
